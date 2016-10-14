@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <meta http-equiv="Cache-Control" content="no-store" />
-    <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
 </head>
 <body>
     <h1>Lametric Time Settings</h1>
@@ -31,98 +31,71 @@
     <button id="save" class="left" onclick="saveSettings()">Save settings</button>
 
     <script type="text/javascript">
-        function onHomeyReady() {
-            // We're ready!
-            Homey.ready();
+      function onHomeyReady() {
+        // Hide some elements initially.
+        $('#row-auto-discovered').hide()
 
-            // Hide some elements initially.
-            $("#row-auto-discovered").hide();
-
-            // Fill input with already stored settings.
-            Homey.get("lametrics", function (err, lametrics) {
-                //Homey.log(lametrics);
-                if (lametrics) {
-                    for (var i = 0; i < lametrics.length; i++) {
-                        var lametric = lametrics[i];
-                        var newLametric = $(".new_lametric").clone();
-                        newLametric.removeClass("new_lametric");
-                        $(".lametric_ip", newLametric).val(lametric.ip);
-                        $(".lametric_api", newLametric).val(lametric.api);
-                        $(".lametric_name", newLametric).val(lametric.name)
-                        newLametric.insertBefore(".new_lametric");
-                    }
-                }
-            });
-        }
-
-        function addLametric() {
-            var newLametric = $(".new_lametric").clone();
-            newLametric.removeClass("new_lametric");
-            $(".lametric_ip", newLametric).val("");
-            $(".lametric_api", newLametric).val("");
-            $(".lametric_name", newLametric).val("");
-            newLametric.insertBefore(".add_lametric");
-            $(".lametric_ip", newLametric).focus();
-        }
-
-        function saveSettings() {
-            // Update running app with new settings (PUT to api).
-            console.log("Saving settings...");
-
-            var lametricIPs = $('input[name^=lametric_ips]').map(function (idx, elem) {
-                return $(elem).val();
-            }).get();
-
-            var lametricAPIs = $('input[name^=lametric_apis]').map(function (idx, elem) {
-                return $(elem).val();
-            }).get();
-            
-            var lametricNAMES = $('input[name^=lametric_names]').map(function (idx, elem) {
-                return $(elem).val();
-            }).get()
-
-            var settings = {};
-            var lametrics = [];
-            for (var i = 0; i < lametricAPIs.length; i++) {
-                if (lametricIPs[i].length > 0 && lametricAPIs[i].length > 0 && lametricNAMES[i].length > 0) {
-                    lametrics.push({ ip: lametricIPs[i], api: lametricAPIs[i], name: lametricNAMES[i] });
-                }
+        // Fill input with already stored settings.
+        Homey.get('lametrics', function (err, lametrics) {
+          if (lametrics) {
+            for (var i = 0; i < lametrics.length; i++) {
+              var lametric = lametrics[i]
+              var newLametric = $(".new_lametric").clone()
+              newLametric.removeClass("new_lametric")
+              $(".lametric_ip", newLametric).val(lametric.ip)
+              $(".lametric_api", newLametric).val(lametric.api)
+              $(".lametric_name", newLametric).val(lametric.name)
+              newLametric.insertBefore(".new_lametric")
             }
+          }
+          // We're ready!
+          Homey.ready()
+        })
+      }
 
-            settings.lametrics = lametrics;
+      function addLametric() {
+        var newLametric = $(".new_lametric").clone()
+        newLametric.removeClass("new_lametric")
+        $(".lametric_ip", newLametric).val("")
+        $(".lametric_api", newLametric).val("")
+        $(".lametric_name", newLametric).val("")
+        newLametric.insertBefore(".add_lametric")
+        $(".lametric_ip", newLametric).focus()
+      }
 
-            Homey.api("PUT", "/settings/", settings, function (err, success) {
-                if (success) {
-                    console.log("Settings saved successfull.");
+      function saveSettings() {
+        console.log("Saving settings...")
+        var lametrics = []
+        var lametricIPs = $('input[name^=lametric_ips]').map((idx, elem) => $(elem).val()).get()
+        var lametricAPIs = $('input[name^=lametric_apis]').map((idx, elem) => $(elem).val()).get()
+        var lametricNAMES = $('input[name^=lametric_names]').map((idx, elem) => $(elem).val()).get()
 
-                    // Display successful update of settings.
-                    setSaveButton("green", "white", __("Settings saved!"));
-
-                    // Store settings for the long term.
-                    Homey.set("lametrics", lametrics);
-                } else {
-                    console.log("Saving settings failed.");
-
-                    // Display failed registration
-                    setSaveButton("lightcoral", "black", __("Settings failed!"));
-                }
-
-                resetSaveButton();
-            });
+        for (var i = 0; i < lametricAPIs.length; i++) {
+          if (lametricIPs[i].length > 0 && lametricAPIs[i].length > 0 && lametricNAMES[i].length > 0) {
+            lametrics.push({ip: lametricIPs[i], api: lametricAPIs[i], name: lametricNAMES[i]})
+          } else {
+            setSaveButton("red", "white", __("Settings incomplete!"))
+            return resetSaveButton()
+          }
         }
+        Homey.set("lametrics", lametrics)
+        console.log("Settings saved successfull.")
+        setSaveButton("green", "white", __("Settings saved!"))
+        resetSaveButton()
+      }
 
-        function resetSaveButton() {
-            setTimeout(function() {
-                setSaveButton("", "black", __("settings.save"));
-            }, 3000);
-        }
+      function resetSaveButton() {
+        setTimeout(function() {
+          setSaveButton("", "black", __("settings.save"))
+        }, 3000)
+      }
 
-        function setSaveButton(backgroundColor, color, innerHtml) {
-            var btnSave = document.getElementById("save");
-            btnSave.style["background-color"] = backgroundColor;
-            btnSave.style["color"] = color;
-            btnSave.innerHTML = innerHtml;
-        }
+      function setSaveButton(backgroundColor, color, innerHtml) {
+        var btnSave = document.getElementById("save")
+        btnSave.style["background-color"] = backgroundColor
+        btnSave.style["color"] = color
+        btnSave.innerHTML = innerHtml
+      }
     </script>
-</body>
+  </body>
 </html>
