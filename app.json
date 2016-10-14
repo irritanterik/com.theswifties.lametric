@@ -1,0 +1,57 @@
+{
+	"id": "com.theswifties.lametric",
+	"version": "0.0.1",
+	"compatibility": "0.x || 1.x",
+	"category": "internet",
+	"name": {
+		"en": "LaMetric Time"
+	},
+	"description": {
+		"en": "Display Homey notifications on your LaMetric Time."
+	},
+	"author": {
+		"name": "Mark Swift",
+		"email": "markaswift@gmail.com"
+	},
+	"images":{
+    "large":"./assets/images/large.png",
+    "small":"./assets/images/small.png"
+   },
+	"flow": {
+		"actions": [{
+			"id": "lametric_notification",
+			"title": {
+				"en": "LaMetric Notification"
+			},
+			"args": [
+			{
+				"name": "nickname",
+				"type": "autocomplete",
+				"placeholder": {
+					"en": "Nickname"
+				}
+			},
+			{
+				"name": "text",
+				"type": "text",
+				"placeholder": {
+					"en": "Text"
+				}
+			},
+			{
+				"name": "icon",
+				"type": "text",
+				"placeholder": {
+					"en": "Icon (3715)"
+				}
+			},
+			{
+				"name": "sound",
+				"type": "autocomplete",
+				"placeholder": {
+					"en": "Sound"
+				}
+			}]
+		}]
+	}
+}
