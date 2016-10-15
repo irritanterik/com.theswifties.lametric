@@ -1,13 +1,15 @@
 {
 	"id": "com.theswifties.lametric",
 	"version": "0.0.1",
-	"compatibility": "0.x || 1.x",
+	"compatibility": "0.10.x",
 	"category": "internet",
 	"name": {
-		"en": "LaMetric Time"
+		"en": "LaMetric Time",
+    "nl": "LaMetric Time"
 	},
 	"description": {
-		"en": "Display Homey notifications on your LaMetric Time."
+		"en": "Display Homey notifications on your LaMetric Time.",
+    "nl": "Toon notificaties op LaMetric Time."
 	},
 	"author": {
 		"name": "Mark Swift",
@@ -21,21 +23,24 @@
 		"actions": [{
 			"id": "lametric_notification",
 			"title": {
-				"en": "LaMetric Notification"
+				"en": "LaMetric Notification",
+        "nl": "LaMetric notificatie"
 			},
 			"args": [
 			{
 				"name": "nickname",
 				"type": "autocomplete",
 				"placeholder": {
-					"en": "Nickname"
+					"en": "Nickname",
+          "nl": "Nickname"
 				}
 			},
 			{
 				"name": "text",
 				"type": "text",
 				"placeholder": {
-					"en": "Text"
+					"en": "Text",
+          "nl": "Bericht"
 				}
 			},
 			{
@@ -49,7 +54,8 @@
 				"name": "sound",
 				"type": "autocomplete",
 				"placeholder": {
-					"en": "Sound"
+					"en": "Sound",
+          "nl": "Geluid"
 				}
 			}]
 		}]
