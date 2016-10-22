@@ -5,57 +5,53 @@
 	"category": "internet",
 	"name": {
 		"en": "LaMetric Time",
-    "nl": "LaMetric Time"
+		"nl": "LaMetric Time"
 	},
 	"description": {
 		"en": "Display Homey notifications on your LaMetric Time.",
-    "nl": "Toon notificaties op LaMetric Time."
+		"nl": "Toon notificaties op LaMetric Time."
 	},
 	"author": {
 		"name": "Mark Swift",
 		"email": "markaswift@gmail.com"
 	},
-	"images":{
-    "large":"./assets/images/large.png",
-    "small":"./assets/images/small.png"
-   },
+	"images": {
+		"large": "./assets/images/large.png",
+		"small": "./assets/images/small.png"
+	},
 	"flow": {
 		"actions": [{
 			"id": "lametric_notification",
 			"title": {
 				"en": "LaMetric Notification",
-        "nl": "LaMetric notificatie"
+				"nl": "LaMetric notificatie"
 			},
-			"args": [
-			{
+			"args": [{
 				"name": "nickname",
 				"type": "autocomplete",
 				"placeholder": {
 					"en": "Nickname",
-          "nl": "Nickname"
+					"nl": "Nickname"
 				}
-			},
-			{
+			}, {
 				"name": "text",
 				"type": "text",
 				"placeholder": {
 					"en": "Text",
-          "nl": "Bericht"
+					"nl": "Bericht"
 				}
-			},
-			{
+			}, {
 				"name": "icon",
 				"type": "text",
 				"placeholder": {
 					"en": "Icon (3715)"
 				}
-			},
-			{
+			}, {
 				"name": "sound",
 				"type": "autocomplete",
 				"placeholder": {
 					"en": "Sound",
-          "nl": "Geluid"
+					"nl": "Geluid"
 				}
 			}]
 		}]

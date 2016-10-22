@@ -82,19 +82,32 @@
           if (lametricIPs[i].length > 0 && lametricAPIs[i].length > 0 && lametricNAMES[i].length > 0) {
             lametrics.push({ip: lametricIPs[i], api: lametricAPIs[i], name: lametricNAMES[i]})
           } else {
+<<<<<<< HEAD
             setSaveButton("red", "white", __("settings.errorIncomplete"))
+=======
+            setSaveButton("red", "white", __("Settings not saved!"))
+>>>>>>> master
             return resetSaveButton()
           }
         }
         Homey.set("lametrics", lametrics)
+<<<<<<< HEAD
         console.log("Settings saved successfull.")
         setSaveButton("green", "white", __("settings.saved"))
+=======
+        console.log("Settings saved successfully.")
+        setSaveButton("green", "white", __("Settings saved!"))
+>>>>>>> master
         resetSaveButton()
       }
 
       function resetSaveButton() {
         setTimeout(function() {
+<<<<<<< HEAD
           setSaveButton("", "black", __("settings.buttonSave"))
+=======
+          setSaveButton("", "black", __("Save settings"))
+>>>>>>> master
         }, 3000)
       }
 
