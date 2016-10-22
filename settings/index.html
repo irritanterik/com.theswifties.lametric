@@ -33,7 +33,7 @@
     <script type="text/javascript">
       function onHomeyReady() {
         // Hide some elements initially.
-        $('#row-auto-discovered').hide()
+        $('.new_lametric').hide()
 
         // Fill input with already stored settings.
         Homey.get('lametrics', function (err, lametrics) {
@@ -41,11 +41,13 @@
             for (var i = 0; i < lametrics.length; i++) {
               var lametric = lametrics[i]
               var newLametric = $(".new_lametric").clone()
-              newLametric.removeClass("new_lametric")
+              var delButton = $('<button id="delete" onClick="deleteEntry('+ i +')"><i class="fa fa-trash-o"></i></button>')
+              newLametric.removeClass("new_lametric").addClass('lametric_data')
               $(".lametric_ip", newLametric).val(lametric.ip)
               $(".lametric_api", newLametric).val(lametric.api)
               $(".lametric_name", newLametric).val(lametric.name)
-              newLametric.insertBefore(".new_lametric")
+              newLametric.append(delButton)
+              newLametric.insertBefore(".add_lametric").show()
             }
           }
           // We're ready!
@@ -53,40 +55,46 @@
         })
       }
 
+      function deleteEntry(num) {
+        $('.lametric_data')[num].remove()
+      }
+
       function addLametric() {
         var newLametric = $(".new_lametric").clone()
-        newLametric.removeClass("new_lametric")
+        var delButton = $('<button id="delete" onClick="deleteEntry('+ $('.lametric_data').size() +')"><i class="fa fa-trash-o"></i></button>')
+        newLametric.removeClass("new_lametric").addClass('lametric_data')
         $(".lametric_ip", newLametric).val("")
         $(".lametric_api", newLametric).val("")
         $(".lametric_name", newLametric).val("")
-        newLametric.insertBefore(".add_lametric")
+        newLametric.append(delButton)
+        newLametric.insertBefore(".add_lametric").show()
         $(".lametric_ip", newLametric).focus()
       }
 
       function saveSettings() {
         console.log("Saving settings...")
         var lametrics = []
-        var lametricIPs = $('input[name^=lametric_ips]').map((idx, elem) => $(elem).val()).get()
-        var lametricAPIs = $('input[name^=lametric_apis]').map((idx, elem) => $(elem).val()).get()
-        var lametricNAMES = $('input[name^=lametric_names]').map((idx, elem) => $(elem).val()).get()
+        var lametricIPs = $('.lametric_data > input[name^=lametric_ips]').map((idx, elem) => $(elem).val()).get()
+        var lametricAPIs = $('.lametric_data > input[name^=lametric_apis]').map((idx, elem) => $(elem).val()).get()
+        var lametricNAMES = $('.lametric_data > input[name^=lametric_names]').map((idx, elem) => $(elem).val()).get()
 
         for (var i = 0; i < lametricAPIs.length; i++) {
           if (lametricIPs[i].length > 0 && lametricAPIs[i].length > 0 && lametricNAMES[i].length > 0) {
             lametrics.push({ip: lametricIPs[i], api: lametricAPIs[i], name: lametricNAMES[i]})
           } else {
-            setSaveButton("red", "white", __("Settings incomplete!"))
+            setSaveButton("red", "white", __("settings.errorIncomplete"))
             return resetSaveButton()
           }
         }
         Homey.set("lametrics", lametrics)
         console.log("Settings saved successfull.")
-        setSaveButton("green", "white", __("Settings saved!"))
+        setSaveButton("green", "white", __("settings.saved"))
         resetSaveButton()
       }
 
       function resetSaveButton() {
         setTimeout(function() {
-          setSaveButton("", "black", __("settings.save"))
+          setSaveButton("", "black", __("settings.buttonSave"))
         }, 3000)
       }
 
