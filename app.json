@@ -19,45 +19,68 @@
     "large":"./assets/images/large.png",
     "small":"./assets/images/small.png"
    },
-	"flow": {
-		"actions": [{
-			"id": "lametric_notification",
-			"title": {
-				"en": "LaMetric Notification",
-        "nl": "LaMetric notificatie"
-			},
-			"args": [
-			{
-				"name": "nickname",
-				"type": "autocomplete",
-				"placeholder": {
-					"en": "Nickname",
-          "nl": "Nickname"
-				}
-			},
-			{
-				"name": "text",
-				"type": "text",
-				"placeholder": {
-					"en": "Text",
-          "nl": "Bericht"
-				}
-			},
-			{
-				"name": "icon",
-				"type": "text",
-				"placeholder": {
-					"en": "Icon (3715)"
-				}
-			},
-			{
-				"name": "sound",
-				"type": "autocomplete",
-				"placeholder": {
-					"en": "Sound",
-          "nl": "Geluid"
-				}
-			}]
-		}]
+   "drivers": [
+     {
+       "id": "lametric",
+       "name": {
+         "en": "LaMetric Time"
+       },
+       "class": "other",
+       "capabilities": ["volume_set"],
+       "images": {
+         "large": "drivers/thermostat/assets/images/large.png",
+         "small": "drivers/thermostat/assets/images/small.png"
+       },
+       "pair": [
+         {
+           "id": "start"
+         },{
+           "id": "list_devices",
+           "template": "list_devices",
+           "navigation": {
+             "next": "add_devices"
+           }
+         },{
+           "id": "add_devices",
+           "template": "add_devices"
+         }
+       ]
+     }],
+   	"flow": {
+		"actions": [
+      { "id": "lametric_notification",
+        "title": {
+          "en": "LaMetric Notification",
+          "nl": "LaMetric notificatie"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          },{
+            "name": "icon",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Homey"
+            }
+          },{
+            "name": "sound",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Sound",
+              "nl": "Geluid"
+            }
+          }
+        ]
+      }
+    ]
 	}
 }
