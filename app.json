@@ -78,6 +78,14 @@
             "type": "device",
             "filter":"driver_id=lametric"
           },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
+          },{
             "name": "text",
             "type": "text",
             "placeholder": {
@@ -97,6 +105,14 @@
             "name": "device",
             "type": "device",
             "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
           },{
             "name": "text",
             "type": "text",
@@ -123,6 +139,14 @@
             "name": "device",
             "type": "device",
             "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
           },{
             "name": "text",
             "type": "text",
@@ -156,6 +180,14 @@
             "name": "device",
             "type": "device",
             "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
           },{
             "name": "text",
             "type": "text",
