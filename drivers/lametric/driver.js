@@ -38,7 +38,6 @@ var self = {
 
     socket.on('list_devices', function (data, callback) {
       lametric.getDevices(activeGrant.access_token).then(result => {
-        console.log(result)
         var deviceList = []
         result.forEach(device => {
           deviceList.push({
@@ -72,5 +71,4 @@ var self = {
     callback(null, true)
   }
 }
-
 module.exports = self

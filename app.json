@@ -172,6 +172,27 @@
             }
           }
         ]
+      },
+      { "id": "setVolume",
+        "title": {
+          "en": "Set volume",
+          "nl": "Instellen volume"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "volume",
+            "type": "range",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "%",
+            "labelDecimals": 0
+          }
+        ]
       }
     ]
 	}
