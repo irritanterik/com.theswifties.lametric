@@ -31,6 +31,25 @@
          "large": "drivers/thermostat/assets/images/large.png",
          "small": "drivers/thermostat/assets/images/small.png"
        },
+       "settings":[
+         {
+           "type":"group",
+           "label":{
+             "en":"General settings",
+             "nl":"Instellingen"
+           },
+           "children":[
+             { "id":"ipv4",
+               "type":"text",
+               "value":"192.168.1.100",
+               "label":{
+                 "en":"Local IP address",
+                 "nl":"Lokaal IP adres"
+               }
+             }
+           ]
+         }
+       ],
        "pair": [
          {
            "id": "start"
@@ -48,10 +67,30 @@
      }],
    	"flow": {
 		"actions": [
-      { "id": "lametric_notification",
+      { "id": "notificationText",
         "title": {
-          "en": "LaMetric Notification",
-          "nl": "LaMetric notificatie"
+          "en": "Notification",
+          "nl": "Notificatie"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          }
+        ]
+      },
+      { "id": "notificationTextIcon",
+        "title": {
+          "en": "Notification (icon)",
+          "nl": "Notificatie (icoon)"
         },
         "args": [
           {
@@ -70,6 +109,59 @@
             "type": "autocomplete",
             "placeholder": {
               "en": "Homey"
+            }
+          }
+        ]
+      },
+      { "id": "notificationTextIconSound",
+        "title": {
+          "en": "Notification (icon and sound)",
+          "nl": "Notificatie (icoon en geluid)"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          },{
+            "name": "icon",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Homey"
+            }
+          },{
+            "name": "sound",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Sound",
+              "nl": "Geluid"
+            }
+          }
+        ]
+      },
+      { "id": "notificationTextSound",
+        "title": {
+          "en": "Notification (sound)",
+          "nl": "Notificatie (geluid)"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
             }
           },{
             "name": "sound",
