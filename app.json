@@ -1,7 +1,7 @@
 {
 	"id": "com.theswifties.lametric",
 	"version": "0.0.1",
-	"compatibility": "0.10.x",
+	"compatibility": ">=0.10.0",
 	"category": "internet",
 	"name": {
 		"en": "LaMetric Time",
