@@ -5,11 +5,11 @@
 	"category": "internet",
 	"name": {
 		"en": "LaMetric Time",
-    "nl": "LaMetric Time"
+        "nl": "LaMetric Time"
 	},
 	"description": {
 		"en": "Display Homey notifications on your LaMetric Time.",
-    "nl": "Toon notificaties op LaMetric Time."
+        "nl": "Toon notificaties op LaMetric Time."
 	},
 	"author": {
 		"name": "Mark Swift",
