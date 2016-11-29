@@ -69,6 +69,29 @@ var self = {
       }
     }
     callback(null, true)
+  },
+  capabilities: {
+    volume_set: {
+      get: function (device, callback) {
+        Homey.log('get', device)
+        module.exports.getSettings(device, (error, settings) => {
+          if (error) return callback(error)
+          lametric.getVolume(settings.ipv4, device.apiKey).then(volume => {
+            callback(null, volume / 100)
+          }).catch(callback)
+        })
+      },
+      set: function (device, volume, callback) {
+        Homey.log('set', device, volume)
+        module.exports.getSettings(device, (error, settings) => {
+          if (error) return callback(error)
+          lametric.setVolume(settings.ipv4, device.apiKey, volume * 100).then(result => {
+            module.exports.realtime(device, 'volume_set', volume)
+            callback(null, volume)
+          }).catch(callback)
+        })
+      }
+    }
   }
 }
 module.exports = self

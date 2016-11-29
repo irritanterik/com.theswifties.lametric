@@ -1,7 +1,7 @@
 {
-	"id": "com.theswifties.lametric",
-	"version": "0.0.1",
-	"compatibility": ">=0.10.0",
+	"id": "com.lametric",
+	"version": "1.0.0",
+	"compatibility": ">=1.0.0",
 	"category": "internet",
 	"name": {
 		"en": "LaMetric Time",
@@ -15,6 +15,18 @@
 		"name": "Mark Swift",
 		"email": "markaswift@gmail.com"
 	},
+  "contributors": {
+    "developers": [
+      {
+        "name": "Mark Swift",
+        "email": "markaswift@gmail.com"
+      },{
+        "name": "Erik van Dongen",
+        "website":"http://github.com/irritanterik/",
+        "email": "gdvandongen@gmail.com"
+      }
+    ]
+  },
 	"images":{
     "large":"./assets/images/large.png",
     "small":"./assets/images/small.png"
@@ -27,6 +39,18 @@
        },
        "class": "other",
        "capabilities": ["volume_set"],
+       "mobile": {
+         "components": [
+           {
+             "id": "icon",
+             "capabilities": []
+           },
+           {
+             "id": "slider",
+             "capabilities": ["volume_set"]
+           }
+         ]
+       },
        "images": {
          "large": "drivers/thermostat/assets/images/large.png",
          "small": "drivers/thermostat/assets/images/small.png"
