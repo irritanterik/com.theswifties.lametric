@@ -8,7 +8,4 @@ What works:
 * Custom notification text
 * Customisable sound
 * Customisable icon
-
-What doesn't:
-
-* Nothing I'm aware of!
+* Set volume

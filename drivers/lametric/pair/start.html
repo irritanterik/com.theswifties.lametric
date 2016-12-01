@@ -1,0 +1,26 @@
+<script type="text/javascript">
+Homey.setTitle(__('pair.start.title'))
+Homey.emit('start', function (error, result) {
+  console.log(error, result)
+})
+
+Homey.on('url', function (url) {
+
+	var width	= 400
+	var height = 400
+	var left = (screen.width / 2) - (width / 2)
+	var top = (screen.height / 2) - (height / 2)
+
+	Homey.popup(url)
+})
+
+Homey.on('authorized', function (success, callback) {
+	if (success) {
+		Homey.showView('list_devices')
+	} else {
+		Homey.alert('Something went wrong!', 'error')
+		Homey.done()
+	}
+})
+
+</script>

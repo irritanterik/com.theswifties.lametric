@@ -1,7 +1,7 @@
 {
-	"id": "com.theswifties.lametric",
-	"version": "0.0.2",
-	"compatibility": "0.10.x",
+	"id": "com.lametric",
+	"version": "1.0.0",
+	"compatibility": ">=1.0.0",
 	"category": "internet",
 	"name": {
 		"en": "LaMetric Time",
@@ -15,49 +15,241 @@
 		"name": "Mark Swift",
 		"email": "markaswift@gmail.com"
 	},
+  "contributors": {
+    "developers": [
+      {
+        "name": "Mark Swift",
+        "email": "markaswift@gmail.com"
+      },{
+        "name": "Erik van Dongen",
+        "website":"http://github.com/irritanterik/",
+        "email": "gdvandongen@gmail.com"
+      }
+    ]
+  },
 	"images":{
     "large":"./assets/images/large.png",
     "small":"./assets/images/small.png"
    },
-	"flow": {
-		"actions": [{
-			"id": "lametric_notification",
-			"title": {
-				"en": "LaMetric Notification",
-                "nl": "LaMetric notificatie"
-			},
-			"args": [
-			{
-				"name": "nickname",
-				"type": "autocomplete",
-				"placeholder": {
-					"en": "Nickname",
-                    "nl": "Nickname"
-				}
-			},
-			{
-				"name": "text",
-				"type": "text",
-				"placeholder": {
-					"en": "Text",
-                    "nl": "Bericht"
-				}
-			},
-			{
-				"name": "icon",
-				"type": "text",
-				"placeholder": {
-					"en": "Icon (3715)"
-				}
-			},
-			{
-				"name": "sound",
-				"type": "autocomplete",
-				"placeholder": {
-					"en": "Sound",
-                    "nl": "Geluid"
-				}
-			}]
-		}]
+   "drivers": [
+     {
+       "id": "lametric",
+       "name": {
+         "en": "LaMetric Time"
+       },
+       "class": "other",
+       "capabilities": ["volume_set"],
+       "mobile": {
+         "components": [
+           {
+             "id": "icon",
+             "capabilities": []
+           },
+           {
+             "id": "slider",
+             "capabilities": ["volume_set"]
+           }
+         ]
+       },
+       "images": {
+         "large": "drivers/thermostat/assets/images/large.png",
+         "small": "drivers/thermostat/assets/images/small.png"
+       },
+       "settings":[
+         {
+           "type":"group",
+           "label":{
+             "en":"General settings",
+             "nl":"Instellingen"
+           },
+           "children":[
+             { "id":"ipv4",
+               "type":"text",
+               "value":"192.168.1.100",
+               "label":{
+                 "en":"Local IP address",
+                 "nl":"Lokaal IP adres"
+               }
+             }
+           ]
+         }
+       ],
+       "pair": [
+         {
+           "id": "start"
+         },{
+           "id": "list_devices",
+           "template": "list_devices",
+           "navigation": {
+             "next": "add_devices"
+           }
+         },{
+           "id": "add_devices",
+           "template": "add_devices"
+         }
+       ]
+     }],
+   	"flow": {
+		"actions": [
+      { "id": "notificationText",
+        "title": {
+          "en": "Notification",
+          "nl": "Notificatie"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          }
+        ]
+      },
+      { "id": "notificationTextIcon",
+        "title": {
+          "en": "Notification (icon)",
+          "nl": "Notificatie (icoon)"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          },{
+            "name": "icon",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Homey"
+            }
+          }
+        ]
+      },
+      { "id": "notificationTextIconSound",
+        "title": {
+          "en": "Notification (icon and sound)",
+          "nl": "Notificatie (icoon en geluid)"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          },{
+            "name": "icon",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Homey"
+            }
+          },{
+            "name": "sound",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Sound",
+              "nl": "Geluid"
+            }
+          }
+        ]
+      },
+      { "id": "notificationTextSound",
+        "title": {
+          "en": "Notification (sound)",
+          "nl": "Notificatie (geluid)"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "icontype",
+            "type": "dropdown",
+            "values": [
+              { "id": "none", "label": { "en": "none", "nl": "geen" }},
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "alert", "label": { "en": "alert", "nl": "waarschuwing" }}
+            ]
+          },{
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Text",
+              "nl": "Bericht"
+            }
+          },{
+            "name": "sound",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Sound",
+              "nl": "Geluid"
+            }
+          }
+        ]
+      },
+      { "id": "setVolume",
+        "title": {
+          "en": "Set volume",
+          "nl": "Instellen volume"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter":"driver_id=lametric"
+          },{
+            "name": "volume",
+            "type": "range",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "%",
+            "labelDecimals": 0
+          }
+        ]
+      }
+    ]
 	}
 }
