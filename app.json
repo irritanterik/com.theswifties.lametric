@@ -52,8 +52,8 @@
          ]
        },
        "images": {
-         "large": "./assets/images/large.png",
-         "small": "./assets/images/large.png"
+         "large": "drivers/lametric/images/large.png",
+         "small": "drivers/lametric/images/small.png"
        },
        "settings":[
          {
