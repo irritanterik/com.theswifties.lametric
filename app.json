@@ -27,6 +27,10 @@
       }
     ]
   },
+	"images":{
+    "large":"./assets/images/large.png",
+    "small":"./assets/images/small.png"
+   },
    "drivers": [
      {
        "id": "lametric",
