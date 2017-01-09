@@ -51,6 +51,10 @@
            }
          ]
        },
+       "images": {
+         "large": "drivers/thermostat/assets/images/large.png",
+         "small": "drivers/thermostat/assets/images/small.png"
+       },
        "settings":[
          {
            "type":"group",
