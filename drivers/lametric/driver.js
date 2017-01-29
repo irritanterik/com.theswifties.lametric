@@ -1,6 +1,7 @@
 /* global Homey */
 'use strict'
 var lametric = require('../../lib/lametric.js')
+var util = require('../../lib/util.js')
 
 const redirect_uri = 'https://callback.athom.com/oauth2/callback/'
 var activeGrant
@@ -11,7 +12,7 @@ var self = {
     callback()
   },
   pair: function (socket) {
-    Homey.log('LaMetric pairing has started...')
+    util.debugLog('LaMetric pairing has started...')
     socket.on('start', function () {
       function handleUrl (error, url) {
         if (error) return
@@ -20,7 +21,7 @@ var self = {
 
       function handleCode (error, code) {
         if (error) return socket.emit('authorized', false)
-        lametric.getToken(Homey.env.CLIENT_ID, Homey.env.CLIENT_SECRET, code, redirect_uri).then(grant => {
+        lametric.cloud.getToken(Homey.env.CLIENT_ID, Homey.env.CLIENT_SECRET, code, redirect_uri).then(grant => {
           activeGrant = grant
           Homey.manager('settings').set('lametricGrant', grant)
           socket.emit('authorized', true)
@@ -30,14 +31,14 @@ var self = {
       }
 
       Homey.manager('cloud').generateOAuth2Callback(
-        lametric.getOauthRequestUri(Homey.env.CLIENT_ID, redirect_uri),
+        lametric.cloud.getOauthRequestUri(Homey.env.CLIENT_ID, redirect_uri),
         handleUrl,
         handleCode
       )
     })
 
     socket.on('list_devices', function (data, callback) {
-      lametric.getDevices(activeGrant.access_token).then(result => {
+      lametric.cloud.getDevices(activeGrant.access_token).then(result => {
         var deviceList = []
         result.forEach(device => {
           deviceList.push({
@@ -51,18 +52,18 @@ var self = {
     })
   },
   added: function (device) {
-    Homey.log('added', device)
+    util.debugLog('added', device)
   },
   deleted: function (device) {
-    Homey.log('deleted', device)
+    util.debugLog('deleted', device)
   },
   renamed: function (device, name, callback) {
-    Homey.log('rename', [device, name])
-    lametric.setName(activeGrant.access_token, device.id, name)
+    util.debugLog('rename', [device, name])
+    lametric.cloud.setName(activeGrant.access_token, device.id, name)
     callback()
   },
   settings: function (device, newSettingsObj, oldSettingsObj, changedKeysArr, callback) {
-    Homey.log('settings changed', {device: device, newSettingsObj: newSettingsObj, changedKeysArr: changedKeysArr})
+    util.debugLog('settings changed', {device: device, newSettingsObj: newSettingsObj, changedKeysArr: changedKeysArr})
     if (newSettingsObj.ipv4) {
       if (!(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(newSettingsObj.ipv4))) {
         return callback('Invalid IP')
@@ -73,19 +74,19 @@ var self = {
   capabilities: {
     volume_set: {
       get: function (device, callback) {
-        Homey.log('get', device)
+        util.debugLog('get', device)
         module.exports.getSettings(device, (error, settings) => {
           if (error) return callback(error)
-          lametric.getVolume(settings.ipv4, device.apiKey).then(volume => {
+          lametric.device.getVolume(settings.ipv4, device.apiKey).then(volume => {
             callback(null, volume / 100)
           }).catch(callback)
         })
       },
       set: function (device, volume, callback) {
-        Homey.log('set', device, volume)
+        util.debugLog('set', device, volume)
         module.exports.getSettings(device, (error, settings) => {
           if (error) return callback(error)
-          lametric.setVolume(settings.ipv4, device.apiKey, volume * 100).then(result => {
+          lametric.device.setVolume(settings.ipv4, device.apiKey, volume * 100).then(result => {
             module.exports.realtime(device, 'volume_set', volume)
             callback(null, volume)
           }).catch(callback)

@@ -1,5 +1,6 @@
 # env
 env.json
+test.js
 
 node_modules/**/*.md
 node_modules/**/*.markdown
