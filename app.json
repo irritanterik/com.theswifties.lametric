@@ -1,20 +1,20 @@
 {
-	"id": "com.lametric",
-	"version": "1.0.0",
-	"compatibility": ">=1.0.0",
-	"category": "internet",
-	"name": {
-		"en": "LaMetric Time",
-        "nl": "LaMetric Time"
-	},
-	"description": {
-		"en": "Display Homey notifications on your LaMetric Time.",
-        "nl": "Toon notificaties op LaMetric Time."
-	},
-	"author": {
-		"name": "Mark Swift",
-		"email": "markaswift@gmail.com"
-	},
+  "id": "com.lametric",
+  "version": "1.0.0",
+  "compatibility": ">=1.1.2",
+  "category": "internet",
+  "name": {
+    "en": "LaMetric Time",
+    "nl": "LaMetric Time"
+  },
+  "description": {
+    "en": "Display Homey notifications on your LaMetric Time.",
+    "nl": "Toon notificaties op LaMetric Time."
+  },
+  "author": {
+    "name": "Mark Swift",
+    "email": "markaswift@gmail.com"
+  },
   "contributors": {
     "developers": [
       {
@@ -27,70 +27,122 @@
       }
     ]
   },
-	"images":{
+  "images":{
     "large":"./assets/images/large.png",
     "small":"./assets/images/small.png"
-   },
-   "drivers": [
-     {
-       "id": "lametric",
-       "name": {
-         "en": "LaMetric Time"
-       },
-       "class": "other",
-       "capabilities": ["volume_set"],
-       "mobile": {
-         "components": [
-           {
-             "id": "icon",
-             "capabilities": []
-           },
-           {
-             "id": "slider",
-             "capabilities": ["volume_set"]
-           }
-         ]
-       },
-       "images": {
-         "large": "drivers/lametric/images/large.png",
-         "small": "drivers/lametric/images/small.png"
-       },
-       "settings":[
-         {
-           "type":"group",
-           "label":{
-             "en":"General settings",
-             "nl":"Instellingen"
-           },
-           "children":[
-             { "id":"ipv4",
-               "type":"text",
-               "value":"192.168.1.100",
-               "label":{
-                 "en":"Local IP address",
-                 "nl":"Lokaal IP adres"
-               }
-             }
-           ]
-         }
-       ],
-       "pair": [
-         {
-           "id": "start"
-         },{
-           "id": "list_devices",
-           "template": "list_devices",
-           "navigation": {
-             "next": "add_devices"
-           }
-         },{
-           "id": "add_devices",
-           "template": "add_devices"
-         }
-       ]
-     }],
-   	"flow": {
-		"actions": [
+  },
+  "drivers": [
+    {
+      "id": "lametric",
+      "name": {
+        "en": "LaMetric Time"
+      },
+      "class": "other",
+      "capabilities": ["volume_set"],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon",
+            "capabilities": []
+          },{
+            "id": "slider",
+            "capabilities": ["volume_set"]
+          }
+        ]
+      },
+      "images": {
+        "large": "./assets/device_large.jpg",
+        "small": "./assets/device_small.jpg"
+      },
+      "settings":[
+        {
+          "type":"group",
+          "label":{
+            "en":"General settings",
+            "nl":"Instellingen"
+          },
+          "children":[
+            {
+              "id":"ipv4",
+              "type":"text",
+              "value":"192.168.1.100",
+              "label":{
+                "en":"Local IP address",
+                "nl":"Lokaal IP adres"
+              }
+            }
+          ]
+        }
+      ],
+      "pair":[
+        {
+          "id": "start"
+        },{
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },{
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "actions": [
+      { "id": "alarmClockSet",
+        "title": {
+          "en": "Set alarm clock",
+          "nl": "Wekker instellen"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "time",
+            "type": "time",
+            "placeholder": {
+              "en": "Time",
+              "nl": "Tijd"
+            }
+          },{
+            "name": "radio",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "true",
+                "label": {
+                  "en": "Radio",
+                  "nl": "Radio"
+                }
+              },{
+                "id": "false",
+                "label": {
+                  "en": "Buzzer",
+                  "nl": "Pieper"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      { "id": "alarmClockUnset",
+        "title": {
+          "en": "Disable alarm clock",
+          "nl": "Wekker uitzetten"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          }
+        ]
+      },
       { "id": "notificationText",
         "title": {
           "en": "Notification",
@@ -229,6 +281,43 @@
           }
         ]
       },
+      { "id": "radioAction",
+        "title": {
+          "en": "Radio",
+          "nl": "Radio"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "action",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "radio.play",
+                "label": {
+                  "en": "Play",
+                  "nl": "Afspelen"
+                }
+              },{
+                "id": "radio.stop",
+                "label": {
+                  "en": "Stop",
+                  "nl": "Stop"
+                }
+              },{
+                "id": "radio.next",
+                "label": {
+                  "en": "Next station",
+                  "nl": "Volgende station"
+                }
+              }
+            ]
+          }
+        ]
+      },
       { "id": "setVolume",
         "title": {
           "en": "Set volume",
@@ -249,7 +338,197 @@
             "labelDecimals": 0
           }
         ]
+      },
+      { "id": "showWidget",
+        "title": {
+          "en": "Show widget",
+          "nl": "Toon widget"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "widget",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Select widget",
+              "nl": "Kies widget"
+            }
+          }
+        ]
+      },
+      { "id": "showWidgetNextPrev",
+        "title": {
+          "en": "Change widget",
+          "nl": "Verander widget"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "direction",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "Previous",
+                "label": {
+                  "en": "Previous",
+                  "nl": "Vorige"
+                }
+              },{
+                "id": "Next",
+                "label": {
+                  "en": "Next",
+                  "nl": "Volgende"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      { "id": "stopwatchAction",
+        "title": {
+          "en": "Stopwatch",
+          "nl": "Stopwatch"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "action",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "stopwatch.pause",
+                "label": {
+                  "en": "Pause",
+                  "nl": "Pauzeer"
+                }
+              },{
+                "id": "stopwatch.reset",
+                "label": {
+                  "en": "Reset",
+                  "nl": "Reset"
+                }
+              },{
+                "id": "stopwatch.start",
+                "label": {
+                  "en": "Start",
+                  "nl": "Start"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      { "id": "timerAction",
+        "title": {
+          "en": "Timer",
+          "nl": "Timer"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "action",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "countdown.pause",
+                "label": {
+                  "en": "Pause",
+                  "nl": "Pauzeer"
+                }
+              },{
+                "id": "countdown.reset",
+                "label": {
+                  "en": "Reset",
+                  "nl": "Reset"
+                }
+              },{
+                "id": "countdown.start",
+                "label": {
+                  "en": "Start",
+                  "nl": "Start"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      { "id": "timerConfig",
+        "title": {
+          "en": "Timer configuration",
+          "nl": "Timer instellen"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "duration",
+            "type": "number",
+            "min": 1,
+            "max": 100000,
+            "placeholder": {
+              "en": "seconds",
+              "nl": "seconden"
+            }
+          },{
+            "name": "start",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "true",
+                "label": {
+                  "en": "Start now",
+                  "nl": "Direct starten"
+                }
+              },{
+                "id": "false",
+                "label": {
+                  "en": "Only set timer",
+                  "nl": "Alleen timer instellen"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      { "id": "weatherAction",
+        "title": {
+          "en": "Weather",
+          "nl": "Weer"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=lametric"
+          },{
+            "name": "action",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "weather.forecast",
+                "label": {
+                  "en": "Forecast",
+                  "nl": "Verwachting"
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
-	}
+  }
 }
