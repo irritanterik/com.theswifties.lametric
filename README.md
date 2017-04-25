@@ -1,6 +1,9 @@
 # LaMetric Time
 
+Important Note: This is a completely new version and is not compatible with prior releases. Please rebuild all flows.
+
 This app lets you send notifications from Homey to your LaMetric Time devices.
+
 Multiple devices are supported!
 
 * Show notification text, optionally with sound and icon
