@@ -1,6 +1,6 @@
 {
   "id": "com.lametric",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "compatibility": ">=1.1.2",
   "category": "internet",
   "name": {
@@ -158,7 +158,7 @@
             "type": "dropdown",
             "values": [
               { "id": "info", "label": { "en": "info", "nl": "" }},
-              { "id": "alert", "label": { "en": "alert", "nl": "" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "" }},
               { "id": "critical", "label": { "en": "critical", "nl": "" }}
             ]
           },{
@@ -236,7 +236,7 @@
             "type": "dropdown",
             "values": [
               { "id": "info", "label": { "en": "info", "nl": "" }},
-              { "id": "alert", "label": { "en": "alert", "nl": "" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "" }},
               { "id": "critical", "label": { "en": "critical", "nl": "" }}
             ]
           },{
