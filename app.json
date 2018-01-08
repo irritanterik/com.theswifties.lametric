@@ -154,6 +154,14 @@
             "type": "device",
             "filter":"driver_id=lametric"
           },{
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
+              { "id": "info", "label": { "en": "info", "nl": "" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+            ]
+          },{
             "name": "icontype",
             "type": "dropdown",
             "values": [
@@ -181,6 +189,14 @@
             "name": "device",
             "type": "device",
             "filter":"driver_id=lametric"
+          },{
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
+              { "id": "info", "label": { "en": "info", "nl": "" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+            ]
           },{
             "name": "icontype",
             "type": "dropdown",
@@ -216,6 +232,14 @@
             "type": "device",
             "filter":"driver_id=lametric"
           },{
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
+              { "id": "info", "label": { "en": "info", "nl": "" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+            ]
+          },{
             "name": "icontype",
             "type": "dropdown",
             "values": [
@@ -243,6 +267,13 @@
               "en": "Sound",
               "nl": "Geluid"
             }
+          },{
+            "name": "repeatcount",
+            "type": "text",
+            "placeholder": {
+              "en": "1-50",
+              "nl": "1-50"
+            }
           }
         ]
       },
@@ -256,6 +287,14 @@
             "name": "device",
             "type": "device",
             "filter":"driver_id=lametric"
+          },{
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
+              { "id": "info", "label": { "en": "info", "nl": "" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+            ]
           },{
             "name": "icontype",
             "type": "dropdown",
@@ -277,6 +316,13 @@
             "placeholder": {
               "en": "Sound",
               "nl": "Geluid"
+            }
+          },{
+            "name": "repeatcount",
+            "type": "text",
+            "placeholder": {
+              "en": "1-50",
+              "nl": "1-50"
             }
           }
         ]
