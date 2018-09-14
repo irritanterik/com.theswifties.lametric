@@ -1,6 +1,6 @@
 {
   "id": "com.lametric",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "compatibility": ">=1.5.3",
   "category": "internet",
   "name": {
@@ -157,9 +157,9 @@
             "name": "priority",
             "type": "dropdown",
             "values": [
-              { "id": "info", "label": { "en": "info", "nl": "" }},
-              { "id": "warning", "label": { "en": "warning", "nl": "" }},
-              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "waarschuwing" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "kritiek" }}
             ]
           },{
             "name": "icontype",
@@ -193,9 +193,9 @@
             "name": "priority",
             "type": "dropdown",
             "values": [
-              { "id": "info", "label": { "en": "info", "nl": "" }},
-              { "id": "warning", "label": { "en": "warning", "nl": "" }},
-              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "waarschuwing" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "kritiek" }}
             ]
           },{
             "name": "icontype",
@@ -235,9 +235,9 @@
             "name": "priority",
             "type": "dropdown",
             "values": [
-              { "id": "info", "label": { "en": "info", "nl": "" }},
-              { "id": "warning", "label": { "en": "warning", "nl": "" }},
-              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "waarschuwing" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "kritiek" }}
             ]
           },{
             "name": "icontype",
@@ -291,9 +291,9 @@
             "name": "priority",
             "type": "dropdown",
             "values": [
-              { "id": "info", "label": { "en": "info", "nl": "" }},
-              { "id": "warning", "label": { "en": "warning", "nl": "" }},
-              { "id": "critical", "label": { "en": "critical", "nl": "" }}
+              { "id": "info", "label": { "en": "info", "nl": "info" }},
+              { "id": "warning", "label": { "en": "warning", "nl": "waarschuwing" }},
+              { "id": "critical", "label": { "en": "critical", "nl": "kritiek" }}
             ]
           },{
             "name": "icontype",
